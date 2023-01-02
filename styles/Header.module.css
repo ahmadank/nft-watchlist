@@ -1,10 +1,23 @@
 .menu {
-  align-self: flex-start;
-  margin-right: auto;
-  margin-top: 1rem;
   margin-left: 2rem;
 }
 
-.drawer {
-  background-color: black;
+.headerText {
+  font-family: Poppins;
+  flex: 0 1 auto;
+  position: absolute;
+  margin-left: 50%;
+  font-size: 30px;
+  font-weight: 900;
+  font-style: italic;
+  text-shadow: 0.5px 0.5px 1px #fff, 1px 1px 50px;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
 }

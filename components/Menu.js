@@ -25,6 +25,7 @@ const useStyles = makeStyles({
   },
   font: {
     color: "#16abff6e",
+    textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
   },
 });
 
@@ -46,7 +47,7 @@ function Menu() {
           aria-label="open drawer"
           onClick={toggleDrawer(!open)}
         >
-          <MenuIcon />
+          <MenuIcon fontSize="large" />
         </IconButton>
       )}
       <Drawer classes={{ paper: classes.paper }} anchor="left" open={open}>
@@ -63,6 +64,7 @@ function Menu() {
                 sx={{
                   borderTop: "1px solid #16abff6e",
                   borderBottom: "1px solid #16abff6e",
+                  boxShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
                 }}
                 key={text}
                 disablePadding
