@@ -194,25 +194,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fontsource/alice@^4.5.10":
-  version "4.5.10"
-  resolved "https://registry.yarnpkg.com/@fontsource/alice/-/alice-4.5.10.tgz#d2fe51aaf4098e627371e43c62010c7ccaac1fc5"
-  integrity sha512-MJveFvHGyrCvbfjLuNCy7/Zu1YpNLRegQcAnScx8b9eDqYpTUOqzkok8VMoo0xH0m8eI7299wMme0Y054yKICg==
-
-"@fontsource/chivo@^4.5.10":
-  version "4.5.10"
-  resolved "https://registry.yarnpkg.com/@fontsource/chivo/-/chivo-4.5.10.tgz#b57e818654835b54c2d75757dbc2b3873d8d2cfd"
-  integrity sha512-PCZXhZrIlGNjeISUYAbbDzAchiYkvJa2iy3qcZfa9FlEI/rCGeHT8/QaZcwkcMXUQJgq/gsMuyO42myP4kSjMA==
-
 "@fontsource/poppins@^4.5.10":
   version "4.5.10"
   resolved "https://registry.yarnpkg.com/@fontsource/poppins/-/poppins-4.5.10.tgz#44dbfeacb5d89efca5ad7ad6cc941b2ac1ee424b"
   integrity sha512-oYZVHsnlwV3VWM1SE/m6SUxVh0QLk5+2wB+lBiXcI7N/0KVQWmV9YykaPqfJHBLvmdya+MAOnv+BQHeLU1vOOw==
-
-"@fontsource/space-grotesk@^4.5.10":
-  version "4.5.10"
-  resolved "https://registry.yarnpkg.com/@fontsource/space-grotesk/-/space-grotesk-4.5.10.tgz#49c62a52e08c7c713ccf25ff58d9061d31048191"
-  integrity sha512-Ua+3NeVpUbVrF4F0I5posgZ0/SvpX0ijmwU4MI43cormzOP6r6Z09+BWwhS85+wMJsM+ravc+65fa/rqAZQ3wg==
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
