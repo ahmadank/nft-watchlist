@@ -18,6 +18,8 @@ import { makeStyles } from "@mui/styles";
 
 import styles from "../styles/Header.module.css";
 import React, { useState } from "react";
+import { redirect } from "react-router-dom";
+import { updateCollections } from "../functions/admin.js";
 
 const useStyles = makeStyles({
   paper: {
@@ -34,6 +36,20 @@ function Menu() {
 
   const toggleDrawer = (toggle) => (event) => {
     setState(toggle);
+  };
+
+  const handleMenuButton = (index) => (event) => {
+    switch (index) {
+      case 0:
+        console.log(0);
+        break;
+      case 1:
+        redirect("/settings");
+        break;
+      case 2:
+        updateCollections();
+        break;
+    }
   };
 
   const classes = useStyles();
@@ -59,7 +75,7 @@ function Menu() {
             <CloseIcon style={{ fill: "white" }} />
           </IconButton>
           <List>
-            {["Watch", "Settings"].map((text, index) => (
+            {["Watch", "Settings", "Admin"].map((text, index) => (
               <ListItem
                 sx={{
                   borderTop: "1px solid #16abff6e",
@@ -69,7 +85,7 @@ function Menu() {
                 key={text}
                 disablePadding
               >
-                <ListItemButton>
+                <ListItemButton onClick={handleMenuButton(index)}>
                   <ListItemIcon>
                     {index === 0 ? (
                       <ShowChartIcon style={{ fill: "white" }} />
