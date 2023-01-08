@@ -17,9 +17,9 @@ export default async function RootLayout({
     <html>
       <head />
       <body>
+        <Header session={session !== null} />
         <SupabaseListener accessToken={session?.access_token} />
         {children}
-        <Header session={session !== null} />
       </body>
     </html>
   );

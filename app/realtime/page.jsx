@@ -1,5 +1,3 @@
-import "server-only";
-
 import createClient from "../../utils/supabase-server";
 import Posts from "./post";
 

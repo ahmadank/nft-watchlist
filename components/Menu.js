@@ -20,7 +20,7 @@ import { makeStyles } from "@mui/styles";
 
 import styles from "../styles/Header.module.css";
 import React, { useState, useEffect } from "react";
-import { redirect } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { updateCollections } from "../functions/admin.js";
 import { handleLogout } from "../functions/login.js";
 
@@ -40,6 +40,7 @@ function Menu(props) {
   const toggleDrawer = (toggle) => (event) => {
     setState(toggle);
   };
+  const router = useRouter();
 
   useEffect(() => {
     if (props.session) setOptions(["Watch", "Settings", "Admin", "Logout"]);
@@ -48,15 +49,17 @@ function Menu(props) {
   const handleMenuButton = (index) => (event) => {
     switch (index) {
       case 0:
-        console.log(0);
+        console.log(index);
         break;
       case 1:
-        redirect("/settings");
+        router.push("/settings");
         break;
       case 2:
+        console.log(index);
         updateCollections();
         break;
       case 3:
+        console.log(index);
         handleLogout();
         break;
     }
