@@ -17,7 +17,13 @@
   display: flex;
   justify-content: flex-start;
   position: relative;
-  padding-top: 10px;
-  margin-bottom: 10px;
+  padding-top: 35px;
+  align-items: center;
+  max-height: 0;
+}
+
+.login {
+  position: absolute;
+  margin-left: 90%;
   align-items: center;
 }

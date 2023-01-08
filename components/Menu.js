@@ -93,10 +93,10 @@ function Menu(props) {
       <Drawer classes={{ paper: classes.paper }} anchor="left" open={open}>
         <Box sx={{ width: 250 }}>
           <IconButton
-            sx={{ mb: 2, mt: 2, ml: 1 }}
+            sx={{ pb: 1, pt: 3, pl: 4 }}
             onClick={toggleDrawer(false)}
           >
-            <CloseIcon style={{ fill: "white" }} />
+            <CloseIcon fontSize="large" style={{ fill: "white" }} />
           </IconButton>
           <List>
             {menuOptions.map((text, index) => (

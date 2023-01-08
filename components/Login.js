@@ -1,16 +1,18 @@
 import { handleLogin } from "../functions/login.js";
-import { IconButton } from "@mui/material";
-import { Menu as MenuIcon } from "@mui/icons-material";
+import { Button } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import styles from "../styles/Header.module.css";
+
 function login() {
   return (
-    <IconButton
-      edge="start"
-      color="inherit"
-      aria-label="open drawer"
-      onClick={handleLogin()}
+    <Button
+      className={styles.login}
+      variant="outlined"
+      size="medium"
+      onClick={handleLogin}
     >
-      <MenuIcon fontSize="large" />
-    </IconButton>
+      <LoginIcon fontSize="large" /> Login
+    </Button>
   );
 }
 export default login;
