@@ -2,7 +2,6 @@ import { supabase } from "./../lib/supabaseClient";
 
 async function updateCollections() {
   const { error } = await supabase.from("collections").delete().neq("id", -1);
-  if (error) console.log(error);
   for (let i = 0; i < 5; ++i) {
     const options = { method: "GET", headers: { accept: "application/json" } };
 

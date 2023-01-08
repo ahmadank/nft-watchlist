@@ -13,17 +13,20 @@ import {
   Close as CloseIcon,
   Settings as SettingsIcon,
   ShowChart as ShowChartIcon,
+  Logout as LogoutIcon,
+  AdminPanelSettings as AdmingIcon,
 } from "@mui/icons-material";
 import { makeStyles } from "@mui/styles";
 
 import styles from "../styles/Header.module.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 import { updateCollections } from "../functions/admin.js";
+import { handleLogout } from "../functions/login.js";
 
 const useStyles = makeStyles({
   paper: {
-    background: "#ffffff0d",
+    background: "#ffffff08",
   },
   font: {
     color: "#16abff6e",
@@ -31,12 +34,16 @@ const useStyles = makeStyles({
   },
 });
 
-function Menu() {
+function Menu(props) {
   const [open, setState] = useState(false);
-
+  const [menuOptions, setOptions] = useState(["Watch", "Settings", "Logout"]);
   const toggleDrawer = (toggle) => (event) => {
     setState(toggle);
   };
+
+  useEffect(() => {
+    if (props.session) setOptions(["Watch", "Settings", "Admin", "Logout"]);
+  }, [props.session]);
 
   const handleMenuButton = (index) => (event) => {
     switch (index) {
@@ -49,7 +56,24 @@ function Menu() {
       case 2:
         updateCollections();
         break;
+      case 3:
+        handleLogout();
+        break;
     }
+  };
+
+  const handleImage = {
+    0: <ShowChartIcon style={{ fill: "white" }} />,
+    1: <SettingsIcon style={{ fill: "white" }} />,
+    2: <AdmingIcon style={{ fill: "white" }} />,
+    3: <LogoutIcon style={{ fill: "white" }} />,
+  };
+
+  const handleImageNotAdmin = {
+    0: <ShowChartIcon style={{ fill: "white" }} />,
+    1: <SettingsIcon style={{ fill: "white" }} />,
+    2: <AdmingIcon style={{ fill: "white" }} />,
+    3: <LogoutIcon style={{ fill: "white" }} />,
   };
 
   const classes = useStyles();
@@ -75,7 +99,7 @@ function Menu() {
             <CloseIcon style={{ fill: "white" }} />
           </IconButton>
           <List>
-            {["Watch", "Settings", "Admin"].map((text, index) => (
+            {menuOptions.map((text, index) => (
               <ListItem
                 sx={{
                   borderTop: "1px solid #16abff6e",
@@ -86,13 +110,7 @@ function Menu() {
                 disablePadding
               >
                 <ListItemButton onClick={handleMenuButton(index)}>
-                  <ListItemIcon>
-                    {index === 0 ? (
-                      <ShowChartIcon style={{ fill: "white" }} />
-                    ) : (
-                      <SettingsIcon style={{ fill: "white" }} />
-                    )}
-                  </ListItemIcon>
+                  <ListItemIcon>{handleImage[index]}</ListItemIcon>
                   <ListItemText
                     classes={{ primary: classes.font }}
                     primary={text}
