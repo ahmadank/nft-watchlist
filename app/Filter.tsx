@@ -11,21 +11,16 @@ import {
 
 function Filter(props: any) {
   const [projectMap, setMap] = useState(new Map());
-  const [testMap, setMtest] = useState([] as any);
   const updateMap = (k: string, v: boolean) => {
-    console.log(1);
     setMap(projectMap.set(k, v));
   };
   useEffect(() => {
     props.projects.forEach((project: string) => {
       if (!projectMap.get(project[0])) updateMap(project[0], false);
     });
+    setMap((oldMap) => new Map(oldMap));
   }, [props]);
 
-  useEffect(() => {
-    let x = Array.from(projectMap.keys());
-    setMtest(x);
-  }, [projectMap]);
   const [checked, setChecked] = useState(true);
 
   const handleChange = (
@@ -48,7 +43,7 @@ function Filter(props: any) {
       {props.projects ? (
         <CardContent>
           <FormGroup>
-            {testMap.map((k: string) => (
+            {Array.from(projectMap.keys()).map((k: string) => (
               <FormControlLabel
                 control={
                   <Checkbox
