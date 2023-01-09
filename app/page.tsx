@@ -1,20 +1,45 @@
 import DataCards from "./DataCards";
 import Filter from "./Filter";
 import styles from "../styles/Index.module.css";
+import { cookies } from "next/headers";
+
 export default async function Home() {
+  const nextCookies = cookies();
+  const auth = nextCookies.get("supabase-auth-token");
+  const projects = [
+    "hapeprime",
+    "clonex",
+    "friendship-bracelets-by-alexis-andre",
+    "boredapeyachtclub",
+    "cryptopunks",
+    "thecaptainz",
+    "mutant-ape-yacht-club",
+    "thememes6529",
+    "hapeprime",
+    "clonex",
+    "friendship-bracelets-by-alexis-andre",
+  ];
+  console.log([...projects]);
   return (
     <>
       <title>Home</title>
       <main>
-        <div className={styles.wrapper}>
-          <div className={styles.filter}>
-            <Filter projects={["null"]} />
+        {auth ? (
+          <div className={styles.wrapper}>
+            <>
+              <div className={styles.filter}>
+                <Filter projects={projects} />
+              </div>
+              {[...projects].map((project) => {
+                // prettier-ignore
+                {/* @ts-expect-error Server Component */}
+                return <DataCards name={project}></DataCards>;
+              })}
+            </>
           </div>
-          <div className={styles.cardContainer}>
-            {/* @ts-expect-error Server Component */}
-            <DataCards name="hapeprime"></DataCards>
-          </div>
-        </div>
+        ) : (
+          <></>
+        )}
       </main>
     </>
   );

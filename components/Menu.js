@@ -26,7 +26,7 @@ import { handleLogout } from "../functions/login.js";
 
 const useStyles = makeStyles({
   paper: {
-    background: "#ffffff08",
+    background: "#000000db",
   },
   font: {
     color: "#16abff6e",
@@ -36,15 +36,16 @@ const useStyles = makeStyles({
 
 function Menu(props) {
   const [open, setState] = useState(false);
-  const [menuOptions, setOptions] = useState(["Watch", "Settings", "Logout"]);
+  const [menuOptions, setOptions] = useState([
+    "Watch",
+    "Settings",
+    "Logout",
+    "Admin",
+  ]);
   const toggleDrawer = (toggle) => (event) => {
     setState(toggle);
   };
   const router = useRouter();
-
-  useEffect(() => {
-    if (props.session) setOptions(["Watch", "Settings", "Admin", "Logout"]);
-  }, [props.session]);
 
   const handleMenuButton = (index) => (event) => {
     switch (index) {
@@ -55,12 +56,11 @@ function Menu(props) {
         router.push("/settings");
         break;
       case 2:
-        console.log(index);
-        // updateCollections();
+        handleLogout();
         break;
       case 3:
-        console.log(index);
-        handleLogout();
+        console.log("Edit Code");
+        // updateCollections();
         break;
     }
   };
@@ -68,15 +68,14 @@ function Menu(props) {
   const handleImage = {
     0: <ShowChartIcon style={{ fill: "white" }} />,
     1: <SettingsIcon style={{ fill: "white" }} />,
-    2: <AdmingIcon style={{ fill: "white" }} />,
-    3: <LogoutIcon style={{ fill: "white" }} />,
+    2: <LogoutIcon style={{ fill: "white" }} />,
+    3: <AdmingIcon style={{ fill: "white" }} />,
   };
 
   const handleImageNotAdmin = {
     0: <ShowChartIcon style={{ fill: "white" }} />,
     1: <SettingsIcon style={{ fill: "white" }} />,
-    2: <AdmingIcon style={{ fill: "white" }} />,
-    3: <LogoutIcon style={{ fill: "white" }} />,
+    2: <LogoutIcon style={{ fill: "white" }} />,
   };
 
   const classes = useStyles();

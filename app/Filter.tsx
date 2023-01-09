@@ -16,24 +16,23 @@ function Filter(props: any) {
   };
   useEffect(() => {
     props.projects.forEach((project: string) => {
-      if (!projectMap.get(project[0])) updateMap(project[0], false);
+      const char = project[0].toUpperCase();
+      if (!projectMap.get(char)) updateMap(char, false);
     });
     setMap((oldMap) => new Map(oldMap));
   }, [props]);
-
-  const [checked, setChecked] = useState(true);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    setChecked(event.target.checked);
+    updateMap(key, !projectMap.get(key));
+    setMap((oldMap) => new Map(oldMap));
   };
 
   return (
     <Card
       sx={{
-        width: "20vw",
         backgroundColor: "rgba(21,25,23, 0.85)",
         height: "40vw",
         overflow: "overlay",
@@ -43,17 +42,17 @@ function Filter(props: any) {
       {props.projects ? (
         <CardContent>
           <FormGroup>
-            {Array.from(projectMap.keys()).map((k: string) => (
+            {Array.from(projectMap.keys()).map((key: string) => (
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={checked}
-                    onChange={(e) => handleChange(e, "test")}
+                    checked={projectMap.get(key)}
+                    onChange={(e) => handleChange(e, key)}
                     sx={{ color: "white" }}
                   />
                 }
-                key={k}
-                label={k}
+                key={key}
+                label={key}
                 sx={{
                   fontSize: 14,
                   color: "#16abff6e",
