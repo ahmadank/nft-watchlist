@@ -1,3 +1,5 @@
+import React, { Suspense } from "react";
+import InfoCard from "../components/InfoCard.js";
 async function getData(name: string) {
   const res = await fetch(`https://api.opensea.io/collection/${name}`);
   if (!res.ok) {
@@ -10,8 +12,13 @@ interface prop {
   name: string;
 }
 
-async function PriceFetch(props: prop) {
+async function DataCards(props: prop) {
   const data = await getData(props.name);
-  return <p>{JSON.stringify(data)}</p>;
+  return (
+    <InfoCard />
+    // <Suspense fallback={<h1>Loading profile...</h1>}>
+    //   <p>test</p>)
+    // </Suspense>
+  );
 }
-export default PriceFetch;
+export default DataCards;

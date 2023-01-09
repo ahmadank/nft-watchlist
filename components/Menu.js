@@ -49,14 +49,14 @@ function Menu(props) {
   const handleMenuButton = (index) => (event) => {
     switch (index) {
       case 0:
-        console.log(index);
+        router.push("/");
         break;
       case 1:
         router.push("/settings");
         break;
       case 2:
         console.log(index);
-        updateCollections();
+        // updateCollections();
         break;
       case 3:
         console.log(index);

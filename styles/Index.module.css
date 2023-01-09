@@ -1,0 +1,16 @@
+.filter {
+  margin-left: 2vw;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  padding-top: 30px;
+}
+
+.cardContainer {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}

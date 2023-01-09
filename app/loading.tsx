@@ -1,4 +1,4 @@
 function loading() {
-  return <p>loading</p>;
+  return <div>loading</div>;
 }
 export default loading;
