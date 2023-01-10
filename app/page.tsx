@@ -19,7 +19,25 @@ export default async function Home() {
     "clonex",
     "friendship-bracelets-by-alexis-andre",
   ];
-  console.log([...projects]);
+  const arr = [
+    "hapeprime",
+    "clonex",
+    "friendship-bracelets-by-alexis-andre",
+    "boredapeyachtclub",
+    "cryptopunks",
+    "thecaptainz",
+    "mutant-ape-yacht-club",
+    "thememes6529",
+    "hapeprime",
+    "clonex",
+    "friendship-bracelets-by-alexis-andre",
+    "A",
+    "B",
+    "D",
+    "E",
+    "F",
+    "G",
+  ];
   return (
     <>
       <title>Home</title>
@@ -28,7 +46,7 @@ export default async function Home() {
           <div className={styles.wrapper}>
             <>
               <div className={styles.filter}>
-                <Filter projects={projects} />
+                <Filter projects={arr} />
               </div>
               {[...projects].map((project) => {
                 // prettier-ignore

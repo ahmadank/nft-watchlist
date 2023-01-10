@@ -22,7 +22,6 @@
     #ffffff10,
     #ffffff80
   );
-  overflow: hidden;
 }
 
 html,
@@ -39,7 +38,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-  min-height: 100vh;
+  max-height: 100vh;
 }
 
 body::before {
@@ -53,7 +52,6 @@ body::before {
 body::after {
   background: var(--primary-glow);
   width: 480px;
-  height: 360px;
   z-index: -1;
   margin-left: -350px;
 }
@@ -65,17 +63,4 @@ body::after {
   position: absolute;
   filter: blur(40px);
   transform: translateZ(0);
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(90, 90, 90);
 }

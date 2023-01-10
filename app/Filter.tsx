@@ -34,13 +34,25 @@ function Filter(props: any) {
     <Card
       sx={{
         backgroundColor: "rgba(21,25,23, 0.85)",
-        height: "40vw",
         overflow: "overlay",
         display: "flex",
+        width: "300px",
+        height: "375px",
       }}
     >
       {props.projects ? (
-        <CardContent>
+        <CardContent sx={{ width: "100%" }}>
+          <Typography
+            sx={{
+              fontSize: 14,
+              color: "#16abff6e",
+              textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
+              border: "2px solid #fff",
+              textAlign: "center",
+            }}
+          >
+            Filter
+          </Typography>
           <FormGroup>
             {Array.from(projectMap.keys()).map((key: string) => (
               <FormControlLabel

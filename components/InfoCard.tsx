@@ -21,9 +21,9 @@ function InfoCard(props: props) {
     >
       <CardContent>
         <img
-          src={props.project.imageUrl}
+          src={props.project?.imageUrl}
           alt="Italian Trulli"
-          style={{ width: "250px", height: "250px", marginLeft: "7px" }}
+          style={{ width: "250px", height: "250px" }}
         />
         <Typography
           sx={{
@@ -35,9 +35,9 @@ function InfoCard(props: props) {
           }}
           gutterBottom
         >
-          Name: {props.project.name} <br />
-          Floor Price: {props.project.price} <br />
-          One Hour Volume: {props.project.oneHourVolume} <br />
+          Name: {props.project?.name} <br />
+          Floor Price: {props.project?.price} <br />
+          One Hour Volume: {props.project?.oneHourVolume} <br />
         </Typography>
       </CardContent>
     </Card>
