@@ -3,7 +3,11 @@ import Filter from "./Filter";
 import styles from "../styles/Index.module.css";
 import { cookies } from "next/headers";
 
-export default async function Home() {
+interface props {
+  params: any;
+  searchParams: any;
+}
+export default async function Home(props: props) {
   const nextCookies = cookies();
   const auth = nextCookies.get("supabase-auth-token");
   const projects = [
@@ -38,6 +42,13 @@ export default async function Home() {
     "F",
     "G",
   ];
+  const displayedProjects = props.searchParams.filter
+    ? [...projects].filter((project) =>
+        props.searchParams.filter
+          ?.toUpperCase()
+          .includes(project[0].toUpperCase())
+      )
+    : [...projects];
   return (
     <>
       <title>Home</title>
@@ -48,10 +59,10 @@ export default async function Home() {
               <div className={styles.filter}>
                 <Filter projects={arr} />
               </div>
-              {[...projects].map((project) => {
+              {displayedProjects.map((project) => {
                 // prettier-ignore
                 {/* @ts-expect-error Server Component */}
-                return <DataCards name={project}></DataCards>;
+                return <DataCards key={project} name={project}></DataCards>;
               })}
             </>
           </div>

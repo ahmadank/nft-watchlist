@@ -13,7 +13,6 @@ interface prop {
 }
 
 async function DataCards(props: prop) {
-  console.log(props);
   let project: any;
   if (props?.name) {
     const data = await getData(props.name);

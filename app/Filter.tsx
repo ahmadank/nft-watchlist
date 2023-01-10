@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -10,24 +11,30 @@ import {
 } from "@mui/material/";
 
 function Filter(props: any) {
-  const [projectMap, setMap] = useState(new Map());
-  const updateMap = (k: string, v: boolean) => {
-    setMap(projectMap.set(k, v));
+  const [projectSet, setSet] = useState(new Set());
+  const addToSet = (k: string) => {
+    setSet(projectSet.add(k));
   };
+  const router = useRouter();
+  const params = useSearchParams();
   useEffect(() => {
     props.projects.forEach((project: string) => {
       const char = project[0].toUpperCase();
-      if (!projectMap.get(char)) updateMap(char, false);
+      if (!projectSet.has(char)) addToSet(char);
     });
-    setMap((oldMap) => new Map(oldMap));
+    setSet((oldMap) => new Set(oldMap));
   }, [props]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    updateMap(key, !projectMap.get(key));
-    setMap((oldMap) => new Map(oldMap));
+    const filterParams = params.get("filter") || "";
+    if (filterParams.includes(key))
+      router.push(`/?filter=${filterParams?.replace(key, "")}`);
+    else if (filterParams.includes(key.toLowerCase()))
+      router.push(`/?filter=${filterParams?.replace(key.toLowerCase(), "")}`);
+    else router.push(`/?filter=${filterParams}${key}`);
   };
 
   return (
@@ -54,11 +61,14 @@ function Filter(props: any) {
             Filter
           </Typography>
           <FormGroup>
-            {Array.from(projectMap.keys()).map((key: string) => (
+            {Array.from(projectSet.keys()).map((key: any) => (
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={projectMap.get(key)}
+                    checked={params
+                      .get("filter")
+                      ?.toUpperCase()
+                      .includes(key.toUpperCase())}
                     onChange={(e) => handleChange(e, key)}
                     sx={{ color: "white" }}
                   />

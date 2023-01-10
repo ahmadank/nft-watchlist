@@ -22,7 +22,7 @@ function InfoCard(props: props) {
       <CardContent>
         <img
           src={props.project?.imageUrl}
-          alt="Italian Trulli"
+          alt={props.project?.name}
           style={{ width: "250px", height: "250px" }}
         />
         <Typography

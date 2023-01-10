@@ -1,4 +1,4 @@
-import { handleLogin } from "../functions/login.js";
+import { handleLogin } from "../functions/login";
 import { Button } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import styles from "../styles/Header.module.css";
