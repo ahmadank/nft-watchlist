@@ -42,9 +42,9 @@ export default async function Home(props: props) {
     "F",
     "G",
   ];
-  const displayedProjects = props.searchParams.filter
+  const displayedProjects = props.searchParams?.filter
     ? [...projects].filter((project) =>
-        props.searchParams.filter
+        props.searchParams?.filter
           ?.toUpperCase()
           .includes(project[0].toUpperCase())
       )

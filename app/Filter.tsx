@@ -18,12 +18,16 @@ function Filter(props: any) {
   const router = useRouter();
   const params = useSearchParams();
   useEffect(() => {
-    props.projects.forEach((project: string) => {
+    props.projects?.forEach((project: string) => {
       const char = project[0].toUpperCase();
       if (!projectSet.has(char)) addToSet(char);
     });
-    setSet((oldMap) => new Set(oldMap));
+    setSet((oldSet) => new Set(oldSet));
   }, [props]);
+
+  useEffect(() => {
+    if (!params.get("filter")) router.push("/");
+  }, [params.get("filter")]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -65,10 +69,14 @@ function Filter(props: any) {
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={params
-                      .get("filter")
-                      ?.toUpperCase()
-                      .includes(key.toUpperCase())}
+                    checked={
+                      params
+                        .get("filter")
+                        ?.toUpperCase()
+                        ?.includes(key.toUpperCase())
+                        ? true
+                        : false
+                    }
                     onChange={(e) => handleChange(e, key)}
                     sx={{ color: "white" }}
                   />
