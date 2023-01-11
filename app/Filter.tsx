@@ -47,6 +47,7 @@ function Filter(props: any) {
         backgroundColor: "rgba(21,25,23, 0.85)",
         overflow: "overlay",
         height: "375px",
+        maxWidth: "275px",
       }}
     >
       {props.projects ? (

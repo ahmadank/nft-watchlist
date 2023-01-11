@@ -54,17 +54,19 @@ export default async function Home(props: props) {
       <title>Home</title>
       <main>
         {auth ? (
-          <div className={styles.wrapper}>
-            <>
-              <div className={styles.filter}>
-                <Filter projects={arr} />
-              </div>
-              {displayedProjects.map((project) => {
-                // prettier-ignore
-                {/* @ts-expect-error Server Component */}
-                return <DataCards key={project} name={project}></DataCards>;
-              })}
-            </>
+          <div className={styles.main}>
+            <div className={styles.wrapper}>
+              <>
+                <div className={styles.filter}>
+                  <Filter projects={arr} />
+                </div>
+                {displayedProjects.map((project) => {
+                  // prettier-ignore
+                  {/* @ts-expect-error Server Component */}
+                  return <DataCards key={project} name={project}></DataCards>;
+                })}
+              </>
+            </div>
           </div>
         ) : (
           <></>

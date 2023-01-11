@@ -14,7 +14,7 @@ function InfoCard(props: props) {
   return (
     <Card
       sx={{
-        maxWidth: "300px",
+        maxWidth: "275px",
         height: "375px",
         backgroundColor: "rgba(21,25,23, 0.85)",
       }}

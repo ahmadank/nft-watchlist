@@ -26,9 +26,7 @@
 
 html,
 body {
-  width: 100vw;
   min-height: 100px;
-  max-height: 100vw;
 }
 
 body {
@@ -39,20 +37,17 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-  max-height: 100vh;
 }
 
 body::before {
   background: var(--secondary-glow);
   border-radius: 50%;
-  width: 912px;
-  height: 720px;
-  margin-left: -450px;
+  width: 100%;
+  height: 100%;
 }
 
 body::after {
   background: var(--primary-glow);
-  width: 480px;
   z-index: -1;
   margin-left: -350px;
 }
@@ -60,7 +55,6 @@ body::after {
 body::before,
 body::after {
   content: "";
-  left: 50%;
   position: absolute;
   filter: blur(40px);
   transform: translateZ(0);

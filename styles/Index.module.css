@@ -1,7 +1,6 @@
 .filter {
-  margin-left: 2vw;
   grid-column: 1 /2;
-  margin-left: 0px;
+  width: 275px;
 }
 
 .wrapper {
@@ -11,41 +10,26 @@
   grid-auto-rows: minmax(100px, auto);
   padding-top: 30px;
   overflow-y: auto;
-  width: fit-content;
+  width: auto;
+  text-align: center;
+  justify-items: center;
 }
 
 @media (max-width: 1000px) {
   .wrapper {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    grid-auto-rows: minmax(100px, auto);
-    padding-top: 30px;
-    overflow-y: auto;
-    width: fit-content;
+    gap: 10px;
   }
 }
 
 @media (max-width: 800px) {
   .wrapper {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    grid-auto-rows: minmax(100px, auto);
-    padding-top: 30px;
-    width: fit-content;
-    overflow-y: auto;
   }
 }
 
 @media (max-width: 550px) {
   .wrapper {
-    display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
-    grid-auto-rows: minmax(100px, auto);
-    padding-top: 30px;
-    overflow-y: auto;
-    width: fit-content;
   }
 }
