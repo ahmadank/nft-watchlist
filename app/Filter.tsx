@@ -46,13 +46,11 @@ function Filter(props: any) {
       sx={{
         backgroundColor: "rgba(21,25,23, 0.85)",
         overflow: "overlay",
-        display: "flex",
-        width: "300px",
         height: "375px",
       }}
     >
       {props.projects ? (
-        <CardContent sx={{ width: "100%" }}>
+        <CardContent>
           <Typography
             sx={{
               fontSize: 14,

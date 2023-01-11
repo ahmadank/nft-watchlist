@@ -23,7 +23,7 @@ function InfoCard(props: props) {
         <img
           src={props.project?.imageUrl}
           alt={props.project?.name}
-          style={{ width: "250px", height: "250px" }}
+          style={{ width: "100%" }}
         />
         <Typography
           sx={{
