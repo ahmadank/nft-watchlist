@@ -11,6 +11,7 @@
   font-weight: 900;
   font-style: italic;
   text-shadow: 0.5px 0.5px 1px #fff, 1px 1px 50px;
+  transform: translate(-50%, -50%);
 }
 
 .header {
@@ -20,10 +21,4 @@
   padding-top: 35px;
   align-items: center;
   max-height: 0;
-}
-
-.login {
-  position: absolute;
-  margin-left: 90%;
-  align-items: center;
 }

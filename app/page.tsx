@@ -2,6 +2,7 @@ import DataCards from "./DataCards";
 import Filter from "./Filter";
 import styles from "../styles/Index.module.css";
 import { cookies } from "next/headers";
+import Login from "../components/Login";
 
 interface props {
   params: any;
@@ -23,25 +24,6 @@ export default async function Home(props: props) {
     "clonex",
     "friendship-bracelets-by-alexis-andre",
   ];
-  const arr = [
-    "hapeprime",
-    "clonex",
-    "friendship-bracelets-by-alexis-andre",
-    "boredapeyachtclub",
-    "cryptopunks",
-    "thecaptainz",
-    "mutant-ape-yacht-club",
-    "thememes6529",
-    "hapeprime",
-    "clonex",
-    "friendship-bracelets-by-alexis-andre",
-    "A",
-    "B",
-    "D",
-    "E",
-    "F",
-    "G",
-  ];
   const displayedProjects = props.searchParams?.filter
     ? [...projects].filter((project) =>
         props.searchParams?.filter
@@ -58,7 +40,7 @@ export default async function Home(props: props) {
             <div className={styles.wrapper}>
               <>
                 <div className={styles.filter}>
-                  <Filter projects={arr} />
+                  <Filter projects={projects} />
                 </div>
                 {displayedProjects.map((project) => {
                   // prettier-ignore
@@ -69,7 +51,7 @@ export default async function Home(props: props) {
             </div>
           </div>
         ) : (
-          <></>
+          <Login />
         )}
       </main>
     </>

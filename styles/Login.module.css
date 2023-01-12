@@ -1,0 +1,20 @@
+.wrapper {
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  height: 500px;
+}
+
+.providers {
+  margin-top: 30px;
+  width: 450px;
+  text-align: center;
+}
+
+.login {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  column-gap: 50px;
+}
