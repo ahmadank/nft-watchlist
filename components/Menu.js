@@ -94,10 +94,7 @@ function Menu(props) {
       )}
       <Drawer classes={{ paper: classes.paper }} anchor="left" open={open}>
         <Box sx={{ width: 250 }}>
-          <IconButton
-            sx={{ pb: 1, pt: 3, pl: 4 }}
-            onClick={toggleDrawer(false)}
-          >
+          <IconButton sx={{ pb: 1, pl: 4 }} onClick={toggleDrawer(false)}>
             <CloseIcon fontSize="large" style={{ fill: "white" }} />
           </IconButton>
           <List>

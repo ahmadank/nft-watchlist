@@ -4,11 +4,12 @@
   left: 50%;
   position: absolute;
   height: 500px;
+  max-width: 100%;
 }
 
 .providers {
   margin-top: 30px;
-  width: 450px;
+  max-width: 450px;
   text-align: center;
 }
 
@@ -17,4 +18,10 @@
   display: flex;
   justify-content: center;
   column-gap: 50px;
+}
+
+@media (max-width: 800px) {
+  .login {
+    column-gap: 10px;
+  }
 }

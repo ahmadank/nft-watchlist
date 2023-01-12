@@ -20,9 +20,6 @@ export default async function Home(props: props) {
     "thecaptainz",
     "mutant-ape-yacht-club",
     "thememes6529",
-    "hapeprime",
-    "clonex",
-    "friendship-bracelets-by-alexis-andre",
   ];
   const displayedProjects = props.searchParams?.filter
     ? [...projects].filter((project) =>

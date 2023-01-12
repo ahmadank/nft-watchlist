@@ -14,6 +14,7 @@ import {
   PermIdentity,
 } from "@mui/icons-material";
 import styles from "../styles/Login.module.css";
+import { useEffect } from "react";
 
 function Login() {
   const initialRef: any = null;
@@ -29,26 +30,33 @@ function Login() {
           handleLogin(email.current.value, password.current.value);
         else alert("Enter Valid email");
     } else {
-      console.log("Test");
       if (email.current?.value && password.current?.value) {
         if (emailCheck.test(email.current?.value))
           handleRegister(email.current.value, password.current.value);
         else alert("Enter Valid email");
       }
     }
+    email.current.value = "";
+    password.current.value = "";
   };
+
+  useEffect(() => {
+    email.current.value = "";
+    password.current.value = "";
+  }, []);
   return (
     <div className={styles.wrapper}>
       <Card
         sx={{
           backgroundColor: "#FAF9F6",
-          height: "500px",
+          maxHeight: "500px",
         }}
       >
         <TextField
           inputRef={email}
           id="outlined-helperText"
           label="Email"
+          value={email.current?.value}
           sx={{ marginTop: "40px", marginLeft: "20px", width: "90%" }}
         />
         <TextField
@@ -56,6 +64,7 @@ function Login() {
           label="Password"
           type="password"
           autoComplete="current-password"
+          value={password.current?.value}
           inputRef={password}
           sx={{ marginTop: "20px", marginLeft: "20px", width: "90%" }}
         />

@@ -7,7 +7,6 @@ const handleGithubLogin = async () => {
 };
 
 const handleLogin = async (email, password) => {
-  console.log(email, password);
   const { error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
@@ -16,7 +15,6 @@ const handleLogin = async (email, password) => {
 };
 
 const handleRegister = async (email, password) => {
-  console.log(email, password);
   const { error } = await supabase.auth.signUp({
     email: email,
     password: password,

@@ -48,6 +48,7 @@ function Filter(props: any) {
         overflow: "overlay",
         height: "375px",
         maxWidth: "275px",
+        borderRadius: "10px",
       }}
     >
       {props.projects ? (

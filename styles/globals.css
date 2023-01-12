@@ -24,11 +24,6 @@
   );
 }
 
-html,
-body {
-  min-height: 100px;
-}
-
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -37,6 +32,9 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  margin: 0px;
+  margin-bottom: 30px;
+  min-height: 100px;
 }
 
 body::before {
@@ -49,7 +47,6 @@ body::before {
 body::after {
   background: var(--primary-glow);
   z-index: -1;
-  margin-left: -350px;
 }
 
 body::before,
