@@ -16,8 +16,9 @@ import {
 import styles from "../styles/Login.module.css";
 
 function Login() {
-  const email = useRef();
-  const password = useRef();
+  const initialRef: any = null;
+  const email = useRef(initialRef);
+  const password = useRef(initialRef);
   const emailCheck =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
