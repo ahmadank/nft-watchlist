@@ -1,5 +1,10 @@
 "use client";
-import { handleLogin } from "../functions/login";
+import React, { useRef } from "react";
+import {
+  handleLogin,
+  handleGithubLogin,
+  handleRegister,
+} from "../functions/login";
 import { Button, Card, Typography, TextField } from "@mui/material";
 import {
   Login as LoginIcon,
@@ -11,6 +16,26 @@ import {
 import styles from "../styles/Login.module.css";
 
 function Login() {
+  const email = useRef();
+  const password = useRef();
+  const emailCheck =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const func = (type: string) => (event: any) => {
+    if (type === "login") {
+      if (email.current?.value && password.current?.value)
+        if (emailCheck.test(email.current?.value))
+          handleLogin(email.current.value, password.current.value);
+        else alert("Enter Valid email");
+    } else {
+      console.log("Test");
+      if (email.current?.value && password.current?.value) {
+        if (emailCheck.test(email.current?.value))
+          handleRegister(email.current.value, password.current.value);
+        else alert("Enter Valid email");
+      }
+    }
+  };
   return (
     <div className={styles.wrapper}>
       <Card
@@ -20,6 +45,7 @@ function Login() {
         }}
       >
         <TextField
+          inputRef={email}
           id="outlined-helperText"
           label="Email"
           sx={{ marginTop: "40px", marginLeft: "20px", width: "90%" }}
@@ -29,6 +55,7 @@ function Login() {
           label="Password"
           type="password"
           autoComplete="current-password"
+          inputRef={password}
           sx={{ marginTop: "20px", marginLeft: "20px", width: "90%" }}
         />
         <div className={styles.providers}>
@@ -36,14 +63,14 @@ function Login() {
             <Button
               variant="outlined"
               sx={{ width: "150px" }}
-              onClick={handleLogin}
+              onClick={func("login")}
             >
               <LoginIcon sx={{ paddingRight: "10px" }} fontSize="large" /> Login
             </Button>
             <Button
               variant="outlined"
               sx={{ width: "150px" }}
-              onClick={handleLogin}
+              onClick={func("register")}
             >
               <PermIdentity sx={{ paddingRight: "10px" }} fontSize="large" />{" "}
               Register
@@ -52,7 +79,7 @@ function Login() {
           <Button
             variant="outlined"
             sx={{ width: "90%", marginBottom: "10px", marginTop: "30px" }}
-            onClick={handleLogin}
+            onClick={handleGithubLogin}
           >
             <GitHub sx={{ paddingRight: "10px" }} fontSize="large" /> Login With
             Github
@@ -61,6 +88,7 @@ function Login() {
             variant="outlined"
             sx={{ width: "90%", marginBottom: "10px" }}
             onClick={handleLogin}
+            disabled
           >
             <Apple sx={{ paddingRight: "10px" }} fontSize="large" /> Login With
             Apple
@@ -69,6 +97,7 @@ function Login() {
             variant="outlined"
             sx={{ width: "90%", marginBottom: "10px" }}
             onClick={handleLogin}
+            disabled
           >
             <Google sx={{ paddingRight: "10px" }} fontSize="large" /> Login With
             Google

@@ -1,13 +1,31 @@
 import supabase from "../utils/supabase-browser";
 
-const handleLogin = async () => {
+const handleGithubLogin = async () => {
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
   });
+};
+
+const handleLogin = async (email, password) => {
+  console.log(email, password);
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
+  if (error) console.log(error);
+};
+
+const handleRegister = async (email, password) => {
+  console.log(email, password);
+  const { error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+  });
+  if (error) console.log(error);
 };
 
 const handleLogout = async () => {
   const { error } = await supabase.auth.signOut();
 };
 
-export { handleLogin, handleLogout };
+export { handleGithubLogin, handleLogin, handleLogout, handleRegister };
