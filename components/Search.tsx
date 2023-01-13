@@ -1,31 +1,42 @@
 "use client";
-import AsyncSelect from "react-select/async";
+import { InputBase, Paper } from "@mui/material";
+import { getProjects } from "../functions/query";
+import { useEffect, useState } from "react";
 
-async function getSearch() {}
 function SearchBar() {
-  const aquaticCreatures = [
-    { label: "Shark", value: "Shark" },
-    { label: "Dolphin", value: "Dolphin" },
-    { label: "Whale", value: "Whale" },
-    { label: "Octopus", value: "Octopus" },
-    { label: "Crab", value: "Crab" },
-    { label: "Lobster", value: "Lobster" },
-  ];
-  const loadOptions = (
-    inputValue: string,
-    callback: (options: any) => void
-  ) => {
-    setTimeout(() => {
-      callback(aquaticCreatures);
-    }, 1000);
-  };
+  const [searchResults, setSearchResults] = useState([]);
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    console.log("useEffect");
+    async function searchProject(searchParms: string) {
+      if (searchParms?.length > 3) {
+        console.log(await getProjects());
+      }
+    }
+    searchProject(search);
+  }, [search]);
+
   return (
-    <AsyncSelect
-      cacheOptions
-      loadOptions={loadOptions}
-      id="long-value-select"
-      instanceId="long-value-select"
-    />
+    <Paper
+      component="form"
+      sx={{
+        p: "2px 4px",
+        display: "flex",
+        alignItems: "center",
+        width: "95%",
+        height: "60%",
+        alignSelf: "center",
+        marginTop: "10px",
+        backgroundColor: "rgba(21,25,23, 0.85)",
+      }}
+    >
+      <InputBase
+        placeholder="Search For A Project"
+        sx={{ color: "white" }}
+        inputProps={{ "aria-label": "Search For A Project" }}
+        onChange={(event) => setSearch(event.target.value)}
+      />
+    </Paper>
   );
 }
 export default SearchBar;

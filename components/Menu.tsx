@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Menu(props) {
+function Menu(prop: any) {
   const [open, setState] = useState(false);
   const [menuOptions, setOptions] = useState([
     "Watch",
@@ -42,12 +42,12 @@ function Menu(props) {
     "Logout",
     "Admin",
   ]);
-  const toggleDrawer = (toggle) => (event) => {
+  const toggleDrawer = (toggle: boolean) => () => {
     setState(toggle);
   };
   const router = useRouter();
 
-  const handleMenuButton = (index) => (event) => {
+  const handleMenuButton = (index: number) => () => {
     switch (index) {
       case 0:
         router.push("/");
@@ -109,7 +109,9 @@ function Menu(props) {
                 disablePadding
               >
                 <ListItemButton onClick={handleMenuButton(index)}>
-                  <ListItemIcon>{handleImage[index]}</ListItemIcon>
+                  <ListItemIcon>
+                    {handleImage[index as keyof typeof handleImage]}
+                  </ListItemIcon>
                   <ListItemText
                     classes={{ primary: classes.font }}
                     primary={text}

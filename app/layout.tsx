@@ -1,7 +1,7 @@
 import SupabaseListener from "../components/supabase-listener";
 import createClient from "../utils/supabase-server";
 import "../styles/globals.css";
-import Header from "../components/Header.js";
+import Header from "../components/Header";
 export const revalidate = 0;
 
 export default async function RootLayout({

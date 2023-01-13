@@ -26,7 +26,7 @@ async function DataCards(props: prop) {
           Math.round(data.collection.stats.one_hour_volume * 100) / 100,
       };
   } else {
-    project = { name: "test", imageUrl: "", price: 1, oneDayVolume: 1 };
+    project = { name: "Error", imageUrl: "", price: 1, oneDayVolume: 1 };
   }
   return (
     <>

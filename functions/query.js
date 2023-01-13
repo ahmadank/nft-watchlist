@@ -1,18 +1,17 @@
-import createClient from "../utils/supabase-server";
+import supabase from "../utils/supabase-browser";
 
-async function getUserProject() {
-  const supabase = createClient();
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  if (session) {
-    const { data } = await supabase
-      .from("profiles")
-      .select("projects")
-      .eq("id", session.user.id);
-    return data[0].projects;
-  }
+async function getUserProject(userId) {
+  const { data } = await supabase
+    .from("profiles")
+    .select("projects")
+    .eq("id", userId);
+  if (data) return data[0].projects;
   return [];
 }
 
-export { getUserProject };
+async function getProjects() {
+  const { data } = await supabase.from("collections").select("name");
+  return data;
+}
+
+export { getUserProject, getProjects };
