@@ -3,6 +3,8 @@ import Filter from "./Filter";
 import styles from "../styles/Index.module.css";
 import { cookies } from "next/headers";
 import Login from "../components/Login";
+import { getUserProject } from "../functions/query";
+import { updateUserProjects } from "../functions/mutation";
 
 interface props {
   params: any;
@@ -11,23 +13,14 @@ interface props {
 export default async function Home(props: props) {
   const nextCookies = cookies();
   const auth = nextCookies.get("supabase-auth-token");
-  const projects = [
-    "hapeprime",
-    "clonex",
-    "friendship-bracelets-by-alexis-andre",
-    "boredapeyachtclub",
-    "cryptopunks",
-    "thecaptainz",
-    "mutant-ape-yacht-club",
-    "thememes6529",
-  ];
+  const projects = await getUserProject();
   const displayedProjects = props.searchParams?.filter
-    ? [...projects].filter((project) =>
+    ? projects.filter((project: string) =>
         props.searchParams?.filter
           ?.toUpperCase()
           .includes(project[0].toUpperCase())
       )
-    : [...projects];
+    : projects;
   return (
     <>
       <title>Home</title>
@@ -39,7 +32,7 @@ export default async function Home(props: props) {
                 <div className={styles.filter}>
                   <Filter projects={projects} />
                 </div>
-                {displayedProjects.map((project) => {
+                {displayedProjects.map((project: string) => {
                   // prettier-ignore
                   {/* @ts-expect-error Server Component */}
                   return <DataCards key={project} name={project}></DataCards>;

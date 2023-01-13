@@ -1,6 +1,10 @@
 import supabase from "../utils/supabase-browser";
 
 const handleGithubLogin = async () => {
+  const { data } = await supabase
+    .from("profiles")
+    .select("id, username, avatar_url, website");
+
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
   });
