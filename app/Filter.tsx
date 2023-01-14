@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Card,
@@ -12,27 +12,33 @@ import {
 
 function Filter(props: any) {
   const [projectSet, setSet] = useState(new Set());
+  const [filter, setFiltered] = useState(false);
   const addToSet = (k: string) => {
     setSet(projectSet.add(k));
   };
   const router = useRouter();
   const params = useSearchParams();
-  useEffect(() => {
+  const array = useMemo(() => {
     props.projects?.forEach((project: string) => {
       const char = project[0].toUpperCase();
       if (!projectSet.has(char)) addToSet(char);
     });
     setSet((oldSet) => new Set(oldSet));
+    return projectSet;
   }, [props]);
 
   useEffect(() => {
-    if (!params.get("filter")) router.push("/");
+    if (!params.get("filter") && filter) {
+      router.push("/");
+      setFiltered(false);
+    }
   }, [params.get("filter")]);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
+    setFiltered(true);
     const filterParams = params.get("filter") || "";
     if (filterParams.includes(key))
       router.push(`/?filter=${filterParams?.replace(key, "")}`);
@@ -65,7 +71,7 @@ function Filter(props: any) {
             Filter
           </Typography>
           <FormGroup>
-            {Array.from(projectSet.keys()).map((key: any) => (
+            {Array.from(array.keys()).map((key: any) => (
               <FormControlLabel
                 control={
                   <Checkbox

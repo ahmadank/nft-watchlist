@@ -7,7 +7,6 @@ function SearchBar() {
   const [searchResults, setSearchResults] = useState([]);
   const [search, setSearch] = useState("");
   useEffect(() => {
-    console.log("useEffect");
     async function searchProject(searchParms: string) {
       if (searchParms?.length > 3) {
         console.log(await getProjects());

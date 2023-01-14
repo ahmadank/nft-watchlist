@@ -31,16 +31,20 @@ export default async function Home(props: props) {
         {session ? (
           <div className={styles.main}>
             <div className={styles.wrapper}>
-              <>
-                <div className={styles.filter}>
-                  <Filter projects={projects} />
-                </div>
-                {displayedProjects.map((project: string) => {
-                  // prettier-ignore
-                  {/* @ts-expect-error Server Component */}
-                  return <DataCards key={project} name={project}></DataCards>;
-                })}
-              </>
+              {displayedProjects ? (
+                <>
+                  <div className={styles.filter}>
+                    <Filter projects={projects} />
+                  </div>
+                  {displayedProjects.map((project: string) => {
+                    // prettier-ignore
+                    {/* @ts-expect-error Server Component */}
+                    return <DataCards key={project} name={project}></DataCards>;
+                  })}
+                </>
+              ) : (
+                <p>Project</p>
+              )}
             </div>
           </div>
         ) : (

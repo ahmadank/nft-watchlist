@@ -48,6 +48,7 @@ function Menu(prop: any) {
   const router = useRouter();
 
   const handleMenuButton = (index: number) => () => {
+    setState(false);
     switch (index) {
       case 0:
         router.push("/");
