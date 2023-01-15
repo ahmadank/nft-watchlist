@@ -1,5 +1,11 @@
 "use client";
-import { Card, CardContent, CardActionArea, Typography } from "@mui/material/";
+import {
+  Card,
+  CardContent,
+  CardActionArea,
+  Typography,
+  CardMedia,
+} from "@mui/material/";
 import { useRouter } from "next/navigation";
 interface props {
   project: {
@@ -13,9 +19,6 @@ interface props {
 
 function InfoCard(props: props) {
   const router = useRouter();
-  const handleOnClick = () => {
-    router.push(`/${props.project.key}`);
-  };
   return (
     <Card
       sx={{
@@ -25,14 +28,20 @@ function InfoCard(props: props) {
         borderRadius: "10px",
       }}
     >
-      <CardActionArea sx={{ height: "100%" }} onClick={handleOnClick}>
+      <CardActionArea
+        sx={{ height: "100%" }}
+        onClick={() => {
+          router.push(`/${props.project.key}`);
+        }}
+      >
         <CardContent
           sx={{ height: "100%", display: "grid", gridTemplateRows: "70% 30%" }}
         >
-          <img
-            src={props.project?.imageUrl}
+          <CardMedia
+            component="img"
+            sx={{ width: "100%", alignSelf: "center", borderRadius: "10px" }}
+            image={props.project?.imageUrl}
             alt={props.project?.name}
-            style={{ width: "100%", alignSelf: "center", borderRadius: "10px" }}
           />
           <Typography
             sx={{

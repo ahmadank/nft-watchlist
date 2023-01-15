@@ -9,8 +9,12 @@ async function getUserProject(userId) {
   return [];
 }
 
-async function getProjects() {
-  const { data } = await supabase.from("collections").select("name");
+async function getProjects(params) {
+  const { data } = await supabase
+    .from("collections")
+    .select("name")
+    .ilike("name", `%${params}%`);
+  if (data?.length > 3) return data.splice(0, 3);
   return data;
 }
 

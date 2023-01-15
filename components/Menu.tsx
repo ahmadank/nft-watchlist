@@ -60,8 +60,7 @@ function Menu(prop: any) {
         handleLogout();
         break;
       case 3:
-        console.log("Edit Code");
-        // updateCollections();
+        updateCollections();
         break;
     }
   };
