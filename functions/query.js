@@ -1,4 +1,5 @@
 import supabase from "../utils/supabase-browser";
+import _, { unique } from "underscore";
 
 async function getUserProject(userId) {
   const { data } = await supabase
@@ -12,9 +13,11 @@ async function getUserProject(userId) {
 async function getProjects(params) {
   const { data } = await supabase
     .from("collections")
-    .select("name")
-    .ilike("name", `%${params}%`);
-  if (data?.length > 3) return data.splice(0, 3);
+    .select("name, slug, imageUrl")
+    .ilike("name", `%${params}%`)
+    .limit(20);
+  console.log(data);
+  return _.unique(data, "name").slice(0, 3);
   return data;
 }
 

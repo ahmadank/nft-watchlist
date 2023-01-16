@@ -1,13 +1,6 @@
 import React, { Suspense } from "react";
 import InfoCard from "../components/InfoCard";
-async function getData(name: string) {
-  const res = await fetch(`https://api.opensea.io/collection/${name}`);
-  if (!res.ok) {
-    // throw new Error("Failed to fetch data");
-    return;
-  }
-  return res.json();
-}
+import getData from "../functions/getDataProject";
 interface prop {
   name: string;
 }

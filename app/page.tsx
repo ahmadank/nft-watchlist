@@ -3,6 +3,7 @@ import Filter from "./Filter";
 import styles from "../styles/Index.module.css";
 import Login from "../components/Login";
 import { getUserProject } from "../functions/query";
+import SearchBar from "./Search";
 import { updateUserProjects } from "../functions/mutation";
 import createClient from "../utils/supabase-server";
 
@@ -30,6 +31,7 @@ export default async function Home(props: props) {
       <main>
         {session ? (
           <div className={styles.main}>
+            <SearchBar />
             <div className={styles.wrapper}>
               {displayedProjects ? (
                 <>
