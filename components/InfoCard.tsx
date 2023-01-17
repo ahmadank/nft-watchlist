@@ -10,6 +10,7 @@ import { FavoriteBorder, Favorite } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   appendToUserProjects,
   removeFromUserProjects,
@@ -27,7 +28,6 @@ interface props {
 
 function InfoCard(props: props) {
   const [favHandler, setFav] = useState(true);
-  const [usdToEth, setUsdToEth] = useState();
   const router = useRouter();
 
   const clickHandler = () => {
@@ -37,75 +37,81 @@ function InfoCard(props: props) {
   };
 
   return (
-    <Card
-      sx={{
-        maxWidth: "275px",
-        height: "400px",
-        backgroundColor: "rgba(21,25,23, 0.85)",
-        borderRadius: "10px",
-      }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
-      <CardContent
+      <Card
         sx={{
-          height: "100%",
+          maxWidth: "275px",
+          height: "400px",
+          backgroundColor: "rgba(21,25,23, 0.85)",
+          borderRadius: "10px",
         }}
       >
-        <CardActionArea
+        <CardContent
           sx={{
-            height: "85%",
-            display: "grid",
-            gridTemplateRows: "75% 25%",
-            alignItems: "start",
-          }}
-          onClick={() => {
-            router.push(`/${props.project.key}`);
+            height: "100%",
           }}
         >
-          <CardMedia
-            component="img"
+          <CardActionArea
             sx={{
-              alignSelf: "center",
-              borderRadius: "10px",
-              marginTop: "10px",
-              gridRow: "1/2",
-              height: "95%",
+              height: "85%",
+              display: "grid",
+              gridTemplateRows: "75% 25%",
+              alignItems: "start",
             }}
-            image={props.project?.imageUrl}
-            alt={props.project?.name}
-          />
-          <Typography
-            sx={{
-              fontSize: 14,
-              color: "#FFD700",
-              textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
-              marginTop: "10px",
-              marginLeft: "7px",
-              gridColumn: "1",
-              gridRow: "2",
+            onClick={() => {
+              router.push(`/${props.project.key}`);
             }}
-            gutterBottom
           >
-            Name: {props.project?.name} <br />
-            Floor Price: {props.project?.price} <br />
-            One Day Volume: {props.project?.oneDayVolume} <br />
-          </Typography>
-        </CardActionArea>
-        <div style={{ float: "right" }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={clickHandler}
-          >
-            {favHandler ? (
-              <Favorite style={{ fill: "red" }} />
-            ) : (
-              <FavoriteBorder />
-            )}
-          </IconButton>
-        </div>
-      </CardContent>
-    </Card>
+            <CardMedia
+              component="img"
+              sx={{
+                alignSelf: "center",
+                borderRadius: "10px",
+                marginTop: "10px",
+                gridRow: "1/2",
+                height: "95%",
+              }}
+              image={props.project?.imageUrl}
+              alt={props.project?.name}
+            />
+            <Typography
+              sx={{
+                fontSize: 14,
+                color: "#FFD700",
+                textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
+                marginTop: "10px",
+                marginLeft: "7px",
+                gridColumn: "1",
+                gridRow: "2",
+              }}
+              gutterBottom
+            >
+              Name: {props.project?.name} <br />
+              Floor Price: {props.project?.price} <br />
+              One Day Volume: {props.project?.oneDayVolume} <br />
+            </Typography>
+          </CardActionArea>
+          <div style={{ float: "right" }}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={clickHandler}
+            >
+              {favHandler ? (
+                <Favorite style={{ fill: "red" }} />
+              ) : (
+                <FavoriteBorder />
+              )}
+            </IconButton>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
 export default InfoCard;

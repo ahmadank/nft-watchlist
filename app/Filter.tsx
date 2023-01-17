@@ -9,6 +9,7 @@ import {
   FormControlLabel,
   Typography,
 } from "@mui/material/";
+import { motion } from "framer-motion";
 
 function Filter(props: any) {
   const [projectSet, setSet] = useState(new Set());
@@ -48,70 +49,72 @@ function Filter(props: any) {
   };
 
   return (
-    <Card
-      sx={{
-        backgroundColor: "rgba(21,25,23, 0.85)",
-        overflow: "overlay",
-        height: "400px",
-        maxWidth: "275px",
-        borderRadius: "10px",
-      }}
-    >
-      {props.projects ? (
-        <CardContent>
-          <Typography
-            sx={{
-              fontSize: 14,
-              color: "#16abff6e",
-              textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
-              border: "2px solid #fff",
-              textAlign: "center",
-            }}
-          >
-            Filter
-          </Typography>
-          <FormGroup>
-            {Array.from(array.keys()).map((key: any) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={
-                      params
-                        .get("filter")
-                        ?.toUpperCase()
-                        ?.includes(key.toUpperCase())
-                        ? true
-                        : false
-                    }
-                    onChange={(e) => handleChange(e, key)}
-                    sx={{ color: "white" }}
-                  />
-                }
-                key={key}
-                label={key}
-                sx={{
-                  fontSize: 14,
-                  color: "#16abff6e",
-                  textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
-                }}
-              />
-            ))}
-          </FormGroup>
-        </CardContent>
-      ) : (
-        <CardContent sx={{ alignSelf: "center" }}>
-          <Typography
-            sx={{
-              fontSize: 14,
-              color: "#16abff6e",
-              textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
-            }}
-          >
-            No Filters available
-          </Typography>
-        </CardContent>
-      )}
-    </Card>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <Card
+        sx={{
+          backgroundColor: "rgba(21,25,23, 0.85)",
+          overflow: "overlay",
+          height: "400px",
+          maxWidth: "275px",
+          borderRadius: "10px",
+        }}
+      >
+        {props.projects ? (
+          <CardContent>
+            <Typography
+              sx={{
+                fontSize: 14,
+                color: "#16abff6e",
+                textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
+                border: "2px solid #fff",
+                textAlign: "center",
+              }}
+            >
+              Filter
+            </Typography>
+            <FormGroup>
+              {Array.from(array.keys()).map((key: any) => (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={
+                        params
+                          .get("filter")
+                          ?.toUpperCase()
+                          ?.includes(key.toUpperCase())
+                          ? true
+                          : false
+                      }
+                      onChange={(e) => handleChange(e, key)}
+                      sx={{ color: "white" }}
+                    />
+                  }
+                  key={key}
+                  label={key}
+                  sx={{
+                    fontSize: 14,
+                    color: "#16abff6e",
+                    textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
+                  }}
+                />
+              ))}
+            </FormGroup>
+          </CardContent>
+        ) : (
+          <CardContent sx={{ alignSelf: "center" }}>
+            <Typography
+              sx={{
+                fontSize: 14,
+                color: "#16abff6e",
+                textShadow: "0.5px 0.5px 1px #fff, 1px 1px 50px",
+              }}
+            >
+              No Filters available
+            </Typography>
+          </CardContent>
+        )}
+      </Card>
+    </motion.div>
   );
 }
 export default Filter;

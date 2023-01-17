@@ -7,7 +7,8 @@ import styles from "../styles/Index.module.css";
 import getData from "../functions/getDataProject";
 import { addProjectToCollection } from "../functions/mutation";
 import _, { unique } from "underscore";
-import { useRouter } from "next/navigation";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { IconButton } from "@mui/material";
 interface project {
   name: string;
   slug: string;
@@ -73,7 +74,21 @@ function SearchBar(props: any) {
           sx={{ color: "white", padding: "4px 0 5px 10px", width: "100%" }}
           inputProps={{ "aria-label": "Search For A Project" }}
           onChange={(event) => setSearch(event.target.value)}
+          value={search}
         />
+        {searchResults != 0 && (
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open drawer"
+            onClick={() => {
+              setSearchResults([]);
+              setSearch("");
+            }}
+          >
+            <HighlightOffIcon fontSize="large" style={{ fill: "#838383" }} />
+          </IconButton>
+        )}
       </Paper>
       {_.unique(searchResults, "name").map((r: any) => {
         if (r.name)
@@ -83,11 +98,11 @@ function SearchBar(props: any) {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                width: "calc(90% - 3px)",
+                width: "100%",
                 height: "60px",
                 alignSelf: "center",
                 backgroundColor: "rgba(21,25,23)",
-                borderRadius: "0px",
+                borderRadius: "0 0 2px 2px",
                 borderBlock: "1px",
                 border: "solid",
                 borderColor: "white",

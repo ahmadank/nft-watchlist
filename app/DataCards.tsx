@@ -19,7 +19,7 @@ async function DataCards(props: prop) {
       imageUrl: data.collection.image_url,
       price: Math.round(data.collection.stats.floor_price * unit * 100) / 100,
       oneDayVolume:
-        Math.round(data.collection.stats.one_day_volume * 100) / 100,
+        Math.round(data.collection.stats.one_hour_volume * 100) / 100,
     };
   }
   return <InfoCard userId={props.userId} project={project} />;
