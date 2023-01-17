@@ -31,7 +31,7 @@ export default async function Home(props: props) {
       <main>
         {session ? (
           <div className={styles.main}>
-            <SearchBar />
+            <SearchBar currUser={session?.user.id} projects={projects} />
             <div className={styles.wrapper}>
               {displayedProjects ? (
                 <>

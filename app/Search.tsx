@@ -6,33 +6,48 @@ import Project from "../components/Project";
 import styles from "../styles/Index.module.css";
 import getData from "../functions/getDataProject";
 import { addProjectToCollection } from "../functions/mutation";
+import _, { unique } from "underscore";
 
 interface project {
   name: string;
   slug: string;
   imageUrl: string;
 }
-function SearchBar() {
+
+function useDebounceValue(value: string, time = 250) {
+  const [debounceValue, setDebounceValue] = useState(value);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebounceValue(value);
+    }, time);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [value, time]);
+  return debounceValue;
+}
+function SearchBar(props: any) {
   const [searchResults, setSearchResults] = useState([] as any);
   const [search, setSearch] = useState("");
   const [unknownProject, setUnkownProject] = useState({} as project);
+  const debounceQuery = useDebounceValue(search);
   useEffect(() => {
     setSearchResults([]);
     setUnkownProject({} as any);
-    async function searchProject(searchParms: string) {
-      if (searchParms?.length > 3) {
-        setSearchResults(await getProjects(searchParms));
+    async function searchProject() {
+      if (debounceQuery?.length > 3) {
+        setSearchResults(await getProjects(debounceQuery));
       }
       if (searchResults.filter((p: project) => p.name == search) == 0) {
         const res = await getData(search);
         if (res) {
           addProjectToCollection(res.collection);
-          setUnkownProject(res.collection);
+          setSearchResults((oldArr: any) => [oldArr, res.collection]);
         }
       }
     }
-    searchProject(search);
-  }, [search]);
+    if (search != "") searchProject();
+  }, [debounceQuery]);
 
   return (
     <div className={styles.search}>
@@ -51,50 +66,33 @@ function SearchBar() {
       >
         <InputBase
           placeholder="Search For A Project"
-          sx={{ color: "white", padding: "4px 0 5px 10px" }}
+          sx={{ color: "white", padding: "4px 0 5px 10px", width: "100%" }}
           inputProps={{ "aria-label": "Search For A Project" }}
           onChange={(event) => setSearch(event.target.value)}
         />
       </Paper>
-      {searchResults.map((r: any) => {
-        return (
-          <Paper
-            key={r.name}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              width: "calc(90% - 3px)",
-              height: "50px",
-              alignSelf: "center",
-              backgroundColor: "rgba(21,25,23)",
-              borderRadius: "0px",
-              borderBlock: "1px",
-              border: "solid",
-              borderColor: "white",
-            }}
-          >
-            <Project project={r} />
-          </Paper>
-        );
+      {_.unique(searchResults, "name").map((r: any) => {
+        if (r.name)
+          return (
+            <Paper
+              key={r.name || "unknownKey"}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                width: "calc(90% - 3px)",
+                height: "60px",
+                alignSelf: "center",
+                backgroundColor: "rgba(21,25,23)",
+                borderRadius: "0px",
+                borderBlock: "1px",
+                border: "solid",
+                borderColor: "white",
+              }}
+            >
+              <Project project={r} currUser={props.currUser} />
+            </Paper>
+          );
       })}
-      {unknownProject != null && (
-        <Paper
-          component="form"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            width: "95%",
-            height: "60%",
-            alignSelf: "center",
-            backgroundColor: "rgba(21,25,23, 0.85)",
-            borderRadius: "0px",
-            borderBlock: "1px",
-            border: "solid",
-            borderColor: "white",
-          }}
-        />
-      )}
-      <p></p>
     </div>
   );
 }

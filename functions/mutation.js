@@ -1,21 +1,15 @@
 import supabase from "../utils/supabase-browser";
 
-async function updateUserProjects(projects) {
-  // const {
-  //   data: { session },
-  // } = await supabase.auth.getSession();
-  // if (session) {
+async function updateUserProjects(user, project) {
   //   const { error } = await supabase
   //     .from("profiles")
   //     .update({ projects: projects })
   //     .eq("id", session.user.id);
   //   if (error) console.log(error);
-  // }
   return;
 }
 
 async function addProjectToCollection(project) {
-  console.log(project.name);
   const { data } = await supabase
     .from("collections")
     .select("name")
