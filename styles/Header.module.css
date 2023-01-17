@@ -12,11 +12,19 @@
   text-shadow: 0.5px 0.5px 1px #fff, 1px 1px 50px;
   justify-self: center;
   align-self: center;
-  padding-top: 10px;
   grid-column-start: 2;
 }
 
 .header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+}
+
+.user {
+  justify-self: right;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  margin-right: 80px;
+  font-family: Poppins;
 }

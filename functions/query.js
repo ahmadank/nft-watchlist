@@ -10,6 +10,15 @@ async function getUserProject(userId) {
   return [];
 }
 
+async function getUserInfo(userId) {
+  const { data } = await supabase
+    .from("profiles")
+    .select("full_name, avatar_url")
+    .eq("id", userId);
+  if (data) return data;
+  return [];
+}
+
 async function getProjects(params) {
   const { data } = await supabase
     .from("collections")
@@ -20,4 +29,4 @@ async function getProjects(params) {
   return data;
 }
 
-export { getUserProject, getProjects };
+export { getUserProject, getProjects, getUserInfo };

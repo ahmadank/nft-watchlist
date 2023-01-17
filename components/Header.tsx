@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Menu from "./Menu";
-import Login from "./Login";
+import User from "./User";
 import TextTransition, { presets } from "react-text-transition";
 import styles from "../styles/Header.module.css";
 import "@fontsource/poppins";
@@ -22,6 +22,7 @@ function Header(props: any) {
       >
         {TEXTS[index % TEXTS.length]}
       </TextTransition>
+      {props.session !== null && <User session={props.session} />}
     </div>
   );
 }
