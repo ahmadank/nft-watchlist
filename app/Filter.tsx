@@ -52,7 +52,7 @@ function Filter(props: any) {
       sx={{
         backgroundColor: "rgba(21,25,23, 0.85)",
         overflow: "overlay",
-        height: "375px",
+        height: "400px",
         maxWidth: "275px",
         borderRadius: "10px",
       }}

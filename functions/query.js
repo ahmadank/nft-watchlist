@@ -16,7 +16,6 @@ async function getProjects(params) {
     .select("name, slug, imageUrl")
     .ilike("name", `%${params}%`)
     .limit(20);
-  console.log(data);
   return _.unique(data, "name").slice(0, 3);
   return data;
 }

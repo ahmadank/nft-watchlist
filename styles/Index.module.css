@@ -3,6 +3,19 @@
   width: 275px;
 }
 
+.options {
+  grid-area: b;
+  width: 90%;
+  height: 50px;
+  margin-top: 10px;
+  background-color: rgba(21, 25, 23, 0.85);
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
 .main {
   display: grid;
   grid-template-areas:

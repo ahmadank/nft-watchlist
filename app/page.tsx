@@ -4,8 +4,8 @@ import styles from "../styles/Index.module.css";
 import Login from "../components/Login";
 import { getUserProject } from "../functions/query";
 import SearchBar from "./Search";
-import { updateUserProjects } from "../functions/mutation";
 import createClient from "../utils/supabase-server";
+import Options from "../components/Options";
 
 interface props {
   params: any;
@@ -32,6 +32,7 @@ export default async function Home(props: props) {
         {session ? (
           <div className={styles.main}>
             <SearchBar currUser={session?.user.id} projects={projects} />
+            <Options />
             <div className={styles.wrapper}>
               {displayedProjects ? (
                 <>
@@ -41,7 +42,8 @@ export default async function Home(props: props) {
                   {displayedProjects.map((project: string) => {
                     // prettier-ignore
                     {/* @ts-expect-error Server Component */}
-                    return <DataCards key={project} name={project}></DataCards>;
+                    // prettier-ignore
+                    return <DataCards key={project} name={project} userId={session?.user.id} params={ props.searchParams?.price} ></DataCards>;
                   })}
                 </>
               ) : (

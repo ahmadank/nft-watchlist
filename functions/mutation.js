@@ -1,12 +1,17 @@
 import supabase from "../utils/supabase-browser";
 
-async function updateUserProjects(user, project) {
-  //   const { error } = await supabase
-  //     .from("profiles")
-  //     .update({ projects: projects })
-  //     .eq("id", session.user.id);
-  //   if (error) console.log(error);
-  return;
+async function appendToUserProjects(user, projectName) {
+  let { data, error } = await supabase.rpc("append_array", {
+    id: user,
+    new_element: projectName,
+  });
+}
+
+async function removeFromUserProjects(user, projectName) {
+  let { data, error } = await supabase.rpc("remove_array", {
+    id: user,
+    new_element: projectName,
+  });
 }
 
 async function addProjectToCollection(project) {
@@ -24,4 +29,4 @@ async function addProjectToCollection(project) {
   }
 }
 
-export { updateUserProjects, addProjectToCollection };
+export { appendToUserProjects, addProjectToCollection, removeFromUserProjects };

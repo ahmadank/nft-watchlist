@@ -7,7 +7,7 @@ import styles from "../styles/Index.module.css";
 import getData from "../functions/getDataProject";
 import { addProjectToCollection } from "../functions/mutation";
 import _, { unique } from "underscore";
-
+import { useRouter } from "next/navigation";
 interface project {
   name: string;
   slug: string;
@@ -29,11 +29,10 @@ function useDebounceValue(value: string, time = 250) {
 function SearchBar(props: any) {
   const [searchResults, setSearchResults] = useState([] as any);
   const [search, setSearch] = useState("");
-  const [unknownProject, setUnkownProject] = useState({} as project);
+  const [clicked, setClicked] = useState(false);
   const debounceQuery = useDebounceValue(search);
   useEffect(() => {
     setSearchResults([]);
-    setUnkownProject({} as any);
     async function searchProject() {
       if (debounceQuery?.length > 3) {
         setSearchResults(await getProjects(debounceQuery));
@@ -48,7 +47,12 @@ function SearchBar(props: any) {
     }
     if (search != "") searchProject();
   }, [debounceQuery]);
-
+  useEffect(() => {
+    if (clicked) {
+      setSearchResults([]);
+      setClicked(false);
+    }
+  }, [clicked]);
   return (
     <div className={styles.search}>
       <Paper
@@ -59,7 +63,7 @@ function SearchBar(props: any) {
           alignSelf: "center",
           marginTop: "10px",
           backgroundColor: "rgba(21,25,23, 0.85)",
-          width: "90%",
+          width: "100%",
           height: "50px",
           borderRadius: "5px 5px 0px 0px",
         }}
@@ -89,7 +93,12 @@ function SearchBar(props: any) {
                 borderColor: "white",
               }}
             >
-              <Project project={r} currUser={props.currUser} />
+              <Project
+                project={r}
+                currUser={props.currUser}
+                userProject={props.projects}
+                clickHandler={setClicked}
+              />
             </Paper>
           );
       })}
