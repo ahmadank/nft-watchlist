@@ -1,10 +1,10 @@
-type props = {
+type PageProps = {
   params: {
     project?: string;
   };
-  searchParams: unknown;
+  searchParams?: unknown;
 };
-function page(props: props) {
+function page(props: PageProps) {
   return <div>page</div>;
 }
 export default page;

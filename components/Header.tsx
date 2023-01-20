@@ -19,7 +19,7 @@ function Header(props: props) {
   }, []);
   return (
     <div className={styles.header}>
-      {props.session !== null && <Menu session={props.session !== null} />}
+      {props.session !== null && <Menu />}
       <TextTransition
         springConfig={presets.wobbly}
         className={styles.headerText}
