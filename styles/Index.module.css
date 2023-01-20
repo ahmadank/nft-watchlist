@@ -1,6 +1,5 @@
 .filter {
   grid-column: 1 /2;
-  width: 275px;
 }
 
 .options {
@@ -45,6 +44,15 @@
   }
 }
 
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 1;
+  position: relative;
+  grid-area: a;
+  height: 60px;
+}
+
 @media (max-width: 700px) {
   .wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -55,13 +63,22 @@
   .wrapper {
     grid-template-columns: repeat(1, 1fr);
   }
-}
-
-.search {
-  display: flex;
-  flex-wrap: wrap;
-  z-index: 1;
-  position: relative;
-  grid-area: a;
-  height: 60px;
+  .main {
+    display: grid;
+    grid-template-areas:
+      "a"
+      "b"
+      "c";
+    grid-template-columns: 100%;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    justify-items: center;
+  }
+  .options {
+    margin-left: 0px;
+    width: 270px;
+  }
+  .search {
+    width: 280px;
+  }
 }
