@@ -10,8 +10,8 @@ This web scrapper was born out of an exciting idea I had during a long plane fli
 
 ### `Problems`
 
-- Website owners often time hate web scrapping, for that I were not able to retrieve info such as quantity of items being sold.
+- Website owners often dislike web scraping, which can prevent me from obtaining information such as the number of items sold.
 
-### `Ideas`
+### `Where we at`
 
-- The website currently relies on cookies to keep user info stored, for that I need a backup option. Generating an option for the user to enter his secret id will allow the user to restore his projects
+- The website is currently hosted on [Vercel](https://vercel.com/ahmadank/nft-watchlist) and is ready for beta use. However the website remains uncomplete as apple and google authentications are not implemented and we are still waiting for an API token from OpenSea to display more info on the project
