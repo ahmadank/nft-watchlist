@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-function Menu(prop: any) {
+function Menu() {
   const [open, setState] = useState(false);
   const [menuOptions, setOptions] = useState([
     "Watch",

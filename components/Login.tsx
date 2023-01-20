@@ -23,22 +23,24 @@ function Login() {
   const emailCheck =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const func = (type: string) => (event: any) => {
-    if (type === "login") {
-      if (email.current?.value && password.current?.value)
-        if (emailCheck.test(email.current?.value))
-          handleLogin(email.current.value, password.current.value);
-        else alert("Enter Valid email");
-    } else {
-      if (email.current?.value && password.current?.value) {
-        if (emailCheck.test(email.current?.value))
-          handleRegister(email.current.value, password.current.value);
-        else alert("Enter Valid email");
+  const func =
+    (type: string) =>
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (type === "login") {
+        if (email.current?.value && password.current?.value)
+          if (emailCheck.test(email.current?.value))
+            handleLogin(email.current.value, password.current.value);
+          else alert("Enter Valid email");
+      } else {
+        if (email.current?.value && password.current?.value) {
+          if (emailCheck.test(email.current?.value))
+            handleRegister(email.current.value, password.current.value);
+          else alert("Enter Valid email");
+        }
       }
-    }
-    email.current.value = "";
-    password.current.value = "";
-  };
+      email.current.value = "";
+      password.current.value = "";
+    };
 
   useEffect(() => {
     email.current.value = "";

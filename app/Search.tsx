@@ -9,11 +9,17 @@ import { addProjectToCollection } from "../functions/mutation";
 import _, { unique } from "underscore";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { IconButton } from "@mui/material";
-interface project {
+
+type project = {
   name: string;
   slug: string;
   imageUrl: string;
-}
+};
+
+type props = {
+  currUser: string;
+  projects: [string];
+};
 
 function useDebounceValue(value: string, time = 250) {
   const [debounceValue, setDebounceValue] = useState(value);
@@ -27,7 +33,7 @@ function useDebounceValue(value: string, time = 250) {
   }, [value, time]);
   return debounceValue;
 }
-function SearchBar(props: any) {
+function SearchBar(props: props) {
   const [searchResults, setSearchResults] = useState([] as any);
   const [search, setSearch] = useState("");
   const [clicked, setClicked] = useState(false);

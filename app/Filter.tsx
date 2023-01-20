@@ -11,7 +11,11 @@ import {
 } from "@mui/material/";
 import { motion } from "framer-motion";
 
-function Filter(props: any) {
+type props = {
+  projects: [string];
+};
+
+function Filter(props: props) {
   const [projectSet, setSet] = useState(new Set());
   const [filter, setFiltered] = useState(false);
   const addToSet = (k: string) => {

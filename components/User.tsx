@@ -2,8 +2,13 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "../styles/Header.module.css";
 import { getUserInfo } from "../functions/query";
 import { useState, useEffect } from "react";
+import { Session } from "@supabase/gotrue-js/src/lib/types";
 
-function User(props: any) {
+type props = {
+  session: Session;
+};
+
+function User(props: props) {
   const [userName, setUserName] = useState("");
   const [userImage, setUserImage] = useState("");
   useEffect(() => {

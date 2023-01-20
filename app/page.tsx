@@ -7,10 +7,12 @@ import SearchBar from "./Search";
 import createClient from "../utils/supabase-server";
 import Options from "../components/Options";
 
-interface props {
-  params: any;
-  searchParams: any;
-}
+type props = {
+  params: unknown;
+  searchParams: {
+    filter?: string;
+  };
+};
 export default async function Home(props: props) {
   const supabase = createClient();
   const {
@@ -31,7 +33,7 @@ export default async function Home(props: props) {
       <main>
         {session ? (
           <div className={styles.main}>
-            <SearchBar currUser={session?.user.id} projects={projects} />
+            <SearchBar currUser={session.user.id} projects={projects} />
             <Options />
             <div className={styles.wrapper}>
               {displayedProjects ? (
@@ -43,7 +45,7 @@ export default async function Home(props: props) {
                     // prettier-ignore
                     {/* @ts-expect-error Server Component */}
                     // prettier-ignore
-                    return <DataCards key={project} name={project} userId={session?.user.id} params={ props.searchParams?.price} ></DataCards>;
+                    return <DataCards key={project} name={project} userId={session.user.id} params={ props.searchParams?.price} ></DataCards>;
                   })}
                 </>
               ) : (

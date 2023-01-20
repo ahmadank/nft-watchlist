@@ -4,9 +4,13 @@ import Menu from "./Menu";
 import User from "./User";
 import TextTransition, { presets } from "react-text-transition";
 import styles from "../styles/Header.module.css";
+import { Session } from "@supabase/gotrue-js/src/lib/types";
 import "@fontsource/poppins";
 
-function Header(props: any) {
+type props = {
+  session: Session | null;
+};
+function Header(props: props) {
   const TEXTS = ["Watch", "Invest", "Grow"];
   const [index, setIndex] = React.useState(0);
   React.useEffect(() => {

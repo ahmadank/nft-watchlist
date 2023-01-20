@@ -15,7 +15,8 @@ import {
   appendToUserProjects,
   removeFromUserProjects,
 } from "../functions/mutation";
-interface props {
+
+type props = {
   project: {
     key: string;
     name: string;
@@ -24,7 +25,7 @@ interface props {
     oneDayVolume: number;
   };
   userId: string;
-}
+};
 
 function InfoCard(props: props) {
   const [favHandler, setFav] = useState(true);
