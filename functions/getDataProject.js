@@ -3,7 +3,17 @@ async function getData(name) {
   if (!res.ok) {
     return null;
   }
-  return res.json();
+  try {
+    return res.json();
+  } catch {
+    return {
+      name: name,
+      collection: { name: name },
+      imageUrl: "",
+      price: 0,
+      oneDayVolume: 0,
+    };
+  }
 }
 
 export default getData;
