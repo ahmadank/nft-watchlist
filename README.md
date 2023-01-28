@@ -14,4 +14,4 @@ This web scrapper was born out of an exciting idea I had during a long plane fli
 
 ### `Where we at`
 
-- The website is currently hosted on [Vercel](https://vercel.com/ahmadank/nft-watchlist) and is ready for beta use. However the website remains uncomplete as apple and google authentications are not implemented and we are still waiting for an API token from OpenSea to display more info on the project
+- The website is currently hosted on [Vercel](https://nft-watchlist-gamma.vercel.app/) and is ready for beta use. However the website remains uncomplete as apple and google authentications are not implemented and we are still waiting for an API token from OpenSea to display more info on the project
